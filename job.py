@@ -98,7 +98,7 @@ class PythonJob(Job):
 
 if __name__ == '__main__':
     winarg=['param1']
-    wincmd = 'C:\py_sandbox\ScheduleX-master\scripts\hellow.bat'
+    wincmd = 'C:\py_sandbox\ScheduleX-master\ScheduleX\scripts\hellow.bat'
 
     winJob = Job(wincmd,winarg)
     winJob.execjob()
@@ -107,7 +107,7 @@ if __name__ == '__main__':
     print 'Job Output: ',winJob.jobout
 
     javaarg=['param1']
-    javacmd = 'C:\py_sandbox\ScheduleX-master\scripts\helloj'
+    javacmd = 'C:\py_sandbox\ScheduleX-master\ScheduleX\scripts\helloj'
 
     javaJob = JavaJob(javacmd,javaarg)
     javaJob.execjob()
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     print 'Job Output: ',javaJob.jobout
 
     pyarg=['param1']
-    pycmd = 'C:\py_sandbox\ScheduleX-master\scripts\hellop.py'
+    pycmd = 'C:\py_sandbox\ScheduleX-master\ScheduleX\scripts\hellop.py'
 
     pyJob = PythonJob(pycmd,pyarg)
     pyJob.execjob()
