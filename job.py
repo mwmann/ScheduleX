@@ -1,6 +1,7 @@
 import sys
 import traceback
 import subprocess
+import os
 
 class Job(object):
     """Basic Job implementation to execute a basic subprocess with arguments"""
@@ -84,6 +85,7 @@ class JavaJob(Job):
         #add a java interpreter call as a pre command to the java class
         precmd='java'
         self.cmdlst.insert(0,precmd)
+        print 'DEBUG:',self.cmdlst
 
 class PythonJob(Job):
 
@@ -97,29 +99,44 @@ class PythonJob(Job):
         self.cmdlst.insert(0,precmd)
 
 if __name__ == '__main__':
+
+    print 'Starting Test.....'
+
+    print 'Setting working scripts directory.....'
+    os.chdir('C:\py_sandbox\ScheduleX-master\ScheduleX\scripts')
+
+    print 'Setting java classpath.....'
+    os.environ['CLASSPATH'] = 'C:\py_sandbox\ScheduleX-master\ScheduleX\scripts'
+
+    print '\nRunning Windows batch file script test'
     winarg=['param1']
-    wincmd = 'C:\py_sandbox\ScheduleX-master\ScheduleX\scripts\hellow.bat'
+    wincmd = 'hellow.bat'
 
     winJob = Job(wincmd,winarg)
     winJob.execjob()
+    print '======> WINDOWS BATCH RESULTS <======'
     print 'Job Process Id:', winJob.jobpid
     print 'Job Return Code:',winJob.jobretcode
     print 'Job Output: ',winJob.jobout
 
-    javaarg=['param1']
-    javacmd = 'C:\py_sandbox\ScheduleX-master\ScheduleX\scripts\helloj'
 
+    print '\nRunning java class test'
+    javaarg=['param1']
+    javacmd = 'helloj'
     javaJob = JavaJob(javacmd,javaarg)
     javaJob.execjob()
+    print '======> JAVA RESULTS <======'
     print 'Job Process Id:',javaJob.jobpid
     print 'Job Return Code:',javaJob.jobretcode
     print 'Job Output: ',javaJob.jobout
 
+    print '\nRunning Python module test'
     pyarg=['param1']
-    pycmd = 'C:\py_sandbox\ScheduleX-master\ScheduleX\scripts\hellop.py'
+    pycmd = 'hellop.py'
 
     pyJob = PythonJob(pycmd,pyarg)
     pyJob.execjob()
+    print '======> PYTHON RESULTS <======'
     print 'Job Process Id:',pyJob.jobpid
     print 'Job Return Code:',pyJob.jobretcode
     print 'Job Output: ',pyJob.jobout
